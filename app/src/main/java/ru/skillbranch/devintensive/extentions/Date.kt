@@ -1,12 +1,7 @@
 package ru.skillbranch.devintensive.extentions
 
-import android.text.style.TtsSpan
-import java.lang.IllegalStateException
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.math.floor
-import kotlin.math.round
-import kotlin.reflect.typeOf
 
 const val SECOND = 1000L
 const val MINUTE = 60 * SECOND
