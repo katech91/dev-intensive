@@ -21,15 +21,6 @@ fun String.truncate(numberOfSymbols: Int = 16): String {
         else -> result = this.substring(0..(numberOfSymbols-1)).trim() + "..."
     }
 
-    val resultLeng = result.length
-
-    for (i in 0 until resultLeng){
-        if (result[resultLeng - i].equals(' ')){
-            result = result.substring(0..(resultLeng-i))
-        }
-        else break
-    }
-
     return result
 }
 
