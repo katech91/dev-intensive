@@ -22,8 +22,9 @@ object Utils {
         for (liter in payload) {
             if ("$liter" == " "){
                 translit += divider
+            } else {
+                translit += literasMapping(liter)
             }
-            translit += literasMapping(liter)
         }
 
         return translit
@@ -31,6 +32,8 @@ object Utils {
 
     fun toInitials(firstName: String? = "", lastName: String? = ""): String?  {
         val initials: String = "${firstName?.get(0)?.toUpperCase() ?: ""}" + "${lastName?.get(0)?.toUpperCase() ?: ""}"
+        if(initials.isEmpty())
+            return null
         return initials
     }
 
