@@ -2,6 +2,7 @@ package ru.skillbranch.devintensive.extensions
 
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.abs
 
 const val SECOND = 1000L
 const val MINUTE = 60 * SECOND
@@ -35,7 +36,7 @@ enum class TimeUnits {
     DAY;
 
     fun plural(value: Int): String {
-        var result = "$value "
+        var result = "${abs(value)} "
         result += when (this) {
             SECOND -> pluriaze(value, "секунду", "секунды", "секунд")
             MINUTE -> pluriaze(value, "минуту", "минуты", "минут")
