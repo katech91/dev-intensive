@@ -29,8 +29,8 @@ object Utils {
         return translit
     }
 
-    fun toInitials(firstName: String?, lastName: String?): String? {
-        val initials: String = "${firstName?.get(0)?.toUpperCase()}" + "${lastName?.get(0)?.toUpperCase()}"
+    fun toInitials(firstName: String? = "", lastName: String? = ""): String?  {
+        val initials: String = "${firstName?.get(0)?.toUpperCase() ?: ""}" + "${lastName?.get(0)?.toUpperCase() ?: ""}"
         return initials
     }
 
