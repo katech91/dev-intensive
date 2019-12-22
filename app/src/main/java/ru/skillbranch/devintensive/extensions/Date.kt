@@ -8,7 +8,7 @@ const val MINUTE = 60 * SECOND
 const val HOUR = 60 * MINUTE
 const val DAY = 24 * HOUR
 
-fun Date.format(pattern:String = "HH:mm:ss dd:MM:yy"):String {
+fun Date.format(pattern:String = "HH:mm:ss dd.MM.yy"):String {
     val dateFormat = SimpleDateFormat(pattern, Locale("ru"))
     return dateFormat.format(this)
 }
@@ -56,9 +56,9 @@ fun Date.humanizeDiff(date: Date = Date()): String {
         in 45000..74999 -> humanReadableDiff = "минуту назад"
         in 75000..(45*MINUTE) -> humanReadableDiff = "${TimeUnits.MINUTE.plural((diffSec/MINUTE).toInt())} назад"
         in (45* MINUTE)..(75*MINUTE) -> humanReadableDiff = "час назад"
-        in (75*MINUTE)..(22* HOUR) -> humanReadableDiff = "${TimeUnits.HOUR.plural((diffSec/ HOUR).toInt())} назад"
+        in (75*MINUTE)..(22* HOUR) -> humanReadableDiff = "${(diffSec/ HOUR).toInt()} ${TimeUnits.HOUR.plural((diffSec/ HOUR).toInt())} назад"
         in (22* HOUR)..(26* HOUR) -> humanReadableDiff = "день назад"
-        in (26* HOUR)..(360* DAY ) -> humanReadableDiff = "${TimeUnits.DAY.plural((diffSec/ DAY).toInt())} назад"
+        in (26* HOUR)..(360* DAY ) -> humanReadableDiff = "${(diffSec/ DAY).toInt()} ${TimeUnits.DAY.plural((diffSec/ DAY).toInt())} назад"
         else -> humanReadableDiff = "более года назад"
     }
 
