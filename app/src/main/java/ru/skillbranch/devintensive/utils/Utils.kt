@@ -1,5 +1,7 @@
 package ru.skillbranch.devintensive.utils
 
+import ru.skillbranch.devintensive.extensions.truncate
+
 object Utils {
 
     fun parseFullName(fullName: String?): Pair<String?, String?>{
@@ -31,7 +33,7 @@ object Utils {
     }
 
     fun toInitials(firstName: String?, lastName: String?): String?  {
-        val initials: String = "${firstName?.getOrNull(0)?.toUpperCase() ?: ""}" + "${lastName?.getOrNull(0)?.toUpperCase() ?: ""}"
+        val initials: String = "${firstName?.truncate()?.getOrNull(0)?.toUpperCase() ?: ""}" + "${lastName?.truncate()?.getOrNull(0)?.toUpperCase() ?: ""}"
         if(initials.isEmpty())
             return null
         return initials
