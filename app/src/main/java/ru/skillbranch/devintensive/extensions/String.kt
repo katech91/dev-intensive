@@ -12,7 +12,7 @@ fun pluriaze(value: Int, form1: String, form2: String, form5: String): String {
     return form5
 }
 
-fun String.truncate(numberOfSymbols: Int): String {
+fun String.truncate(numberOfSymbols: Int = 16): String {
     var result: String
 
     val length = this.length
