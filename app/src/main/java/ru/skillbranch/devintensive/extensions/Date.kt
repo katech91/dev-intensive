@@ -35,15 +35,15 @@ enum class TimeUnits {
     DAY;
 
     fun plural(value: Int): String {
-
-        return when (this) {
+        var result = "$value "
+        result += when (this) {
             SECOND -> pluriaze(value, "секунду", "секунды", "секунд")
             MINUTE -> pluriaze(value, "минуту", "минуты", "минут")
             HOUR -> pluriaze(value, "час", "часа", "часов")
             DAY -> pluriaze(value, "день", "дня", "дней")
         }
+        return result
     }
-
 }
 
 fun Date.humanizeDiff(date: Date = Date()): String {
@@ -56,16 +56,16 @@ fun Date.humanizeDiff(date: Date = Date()): String {
         in 45000..74999 -> humanReadableDiff = "минуту назад"
         in 75000..(45*MINUTE) -> humanReadableDiff = "${TimeUnits.MINUTE.plural((diffSec/MINUTE).toInt())} назад"
         in (45* MINUTE)..(75*MINUTE) -> humanReadableDiff = "час назад"
-        in (75*MINUTE)..(22* HOUR) -> humanReadableDiff = "${(diffSec/ HOUR).toInt()} ${TimeUnits.HOUR.plural((diffSec/ HOUR).toInt())} назад"
+        in (75*MINUTE)..(22* HOUR) -> humanReadableDiff = "${TimeUnits.HOUR.plural((diffSec/ HOUR).toInt())} назад"
         in (22* HOUR)..(26* HOUR) -> humanReadableDiff = "день назад"
-        in (26* HOUR)..(360* DAY ) -> humanReadableDiff = "${(diffSec/ DAY).toInt()} ${TimeUnits.DAY.plural((diffSec/ DAY).toInt())} назад"
+        in (26* HOUR)..(360* DAY ) -> humanReadableDiff = "${TimeUnits.DAY.plural((diffSec/ DAY).toInt())} назад"
         in -44999..-1000 -> humanReadableDiff = "через несколько секунд"
         in -74999..-45000 -> humanReadableDiff = "через минуту"
-        in (-45*MINUTE)..-75000 -> humanReadableDiff = "через ${-(diffSec/MINUTE).toInt()} ${TimeUnits.MINUTE.plural((diffSec/MINUTE).toInt())}"
+        in (-45*MINUTE)..-75000 -> humanReadableDiff = "через ${TimeUnits.MINUTE.plural((diffSec/MINUTE).toInt())}"
         in (-75*MINUTE)..(-45* MINUTE) -> humanReadableDiff = "через час"
-        in (-22* HOUR)..(-75*MINUTE) -> humanReadableDiff = "через ${-(diffSec/ HOUR).toInt()} ${TimeUnits.HOUR.plural((diffSec/ HOUR).toInt())}"
+        in (-22* HOUR)..(-75*MINUTE) -> humanReadableDiff = "через ${TimeUnits.HOUR.plural((diffSec/ HOUR).toInt())}"
         in (-26* HOUR)..(-22* HOUR) -> humanReadableDiff = "через день"
-        in (-360* DAY )..(-26* HOUR) -> humanReadableDiff = "через ${-(diffSec/ DAY).toInt()} ${TimeUnits.DAY.plural((diffSec/ DAY).toInt())}"
+        in (-360* DAY )..(-26* HOUR) -> humanReadableDiff = "через ${TimeUnits.DAY.plural((diffSec/ DAY).toInt())}"
         in Long.MIN_VALUE..(-360* DAY) -> humanReadableDiff = "более чем через год"
 
         else -> humanReadableDiff = "более года назад"
