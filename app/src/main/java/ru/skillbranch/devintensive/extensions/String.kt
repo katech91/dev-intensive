@@ -1,6 +1,5 @@
-package ru.skillbranch.devintensive.extentions
+package ru.skillbranch.devintensive.extensions
 
-import java.text.DateFormatSymbols
 
 fun pluriaze(value: Int, form1: String, form2: String, form5: String): String {
     if (0 == value) return form5
