@@ -30,7 +30,7 @@ object Utils {
     }
 
     fun toInitials(firstName: String?, lastName: String?): String? {
-        val initials: String = "${firstName?.get(0)}" + "${lastName?.get(0)}"
+        val initials: String = "${firstName?.get(0)?.toUpperCase()}" + "${lastName?.get(0)?.toUpperCase()}"
         return initials
     }
 
