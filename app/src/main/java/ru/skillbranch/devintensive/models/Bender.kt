@@ -21,8 +21,14 @@ class Bender(var status:Status = Status.NORMAL, var question: Question = Questio
             question = question.nextQuetion()
             "Отлично - ты справился\n${question.question}" to status.color
         } else{
-            status = status.nextStatus()
-            "Это неправильный ответ\n${question.question}" to status.color
+            if (status.equals(Status.CRITICAL)){
+                status = status.nextStatus()
+                question = Question.NAME
+                "Это неправильный ответ. Давай все по новой\n${question.question}" to status.color
+            }else {
+                status = status.nextStatus()
+                "Это неправильный ответ\n${question.question}" to status.color
+            }
         }
     }
 
@@ -30,7 +36,7 @@ class Bender(var status:Status = Status.NORMAL, var question: Question = Questio
         NORMAL(Triple(255, 255, 255)),
         WARNING(Triple(255, 120, 0)),
         DANGER(Triple(255, 60, 60)),
-        CRITICAL(Triple(255, 255, 0));
+        CRITICAL(Triple(255, 0, 0));
 
         fun nextStatus(): Status{
             return if (this.ordinal < values().lastIndex){
@@ -95,7 +101,7 @@ class Bender(var status:Status = Status.NORMAL, var question: Question = Questio
                         return "Серийный номер содержит только цифры, и их 7"
                     }
                 }
-                if (7 == answer.length){
+                if (7 != answer.length){
                     return "Серийный номер содержит только цифры, и их 7"
                 }
                 return null
