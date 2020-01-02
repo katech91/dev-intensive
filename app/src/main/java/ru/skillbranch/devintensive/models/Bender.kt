@@ -87,7 +87,7 @@ class Bender(var status:Status = Status.NORMAL, var question: Question = Questio
                 return null
             }
         },
-        BDAY("Когда меня сделали?", listOf("2993")){
+        BDAY("Когда меня создали?", listOf("2993")){
             override fun nextQuetion(): Question = SERIAL
 
             override fun checkFormat(answer: String): String? {
